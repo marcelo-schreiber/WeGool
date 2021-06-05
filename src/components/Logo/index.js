@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import * as S from './styles';
+import * as S from "./styles";
 
 const Logo = () => {
   return (

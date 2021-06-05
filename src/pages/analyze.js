@@ -1,11 +1,11 @@
 // hooks
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import useAuth from '../hooks/useAuth';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import useAuth from "../hooks/useAuth";
 
 // utils
-import api from '../services/api';
-import isBrowser from '../utils/isBrowser';
+import api from "../services/api";
+import isBrowser from "../utils/isBrowser";
 
 function Analyze() {
   const router = useRouter();
@@ -13,16 +13,16 @@ function Analyze() {
   const { isAuth, Logout } = useAuth();
 
   if (isBrowser() && !isAuth) {
-    router.push('/');
+    router.push("/");
   }
 
   useEffect(() => {
     isAuth &&
       api
-        .get('/Aluno/ObterDetalhesCorrecao?idredacao=121964', {
+        .get("/Aluno/ObterDetalhesCorrecao?idredacao=121964", {
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem('token'),
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
           },
         })
         .then((res) => setData(res.data));

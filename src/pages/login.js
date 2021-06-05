@@ -1,42 +1,42 @@
 // hooks
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import useAuth from '../hooks/useAuth';
-import useInnerDimensions from '../hooks/useInnerDimensions';
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import useAuth from "../hooks/useAuth";
+import useInnerDimensions from "../hooks/useInnerDimensions";
 
 // components
-import Head from 'next/head';
-import ReactLoading from 'react-loading';
-import Image from 'next/image';
-import Logo from '../components/Logo';
+import Head from "next/head";
+import ReactLoading from "react-loading";
+import Image from "next/image";
+import Logo from "../components/Logo";
 
 // styled
-import * as S from '../styles/components/login';
+import * as S from "../styles/components/login";
 
 // utils
-import isBrowser from '../utils/isBrowser';
+import isBrowser from "../utils/isBrowser";
 
 // toasts
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const router = useRouter();
   const { width } = useInnerDimensions();
   const { isAuth, Login } = useAuth();
 
-  const [matricula, setMatricula] = useState('');
-  const [senha, setSenha] = useState('');
+  const [matricula, setMatricula] = useState("");
+  const [senha, setSenha] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   if (isBrowser && isAuth) {
-    router.push('/analyze');
+    router.push("/analyze");
     return null;
   }
 
   const reset = () => {
-    setSenha('');
-    setMatricula('');
+    setSenha("");
+    setMatricula("");
   };
 
   const handleSubmit = async (e) => {
