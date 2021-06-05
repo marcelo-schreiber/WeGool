@@ -14,11 +14,6 @@ export const AuthProvider = ({ children }) => {
 
       if (res.data.accessToken) {
         localStorage.setItem('token', `Bearer ${res.data.accessToken}`);
-        api.defaults.headers = {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${res.data.accessToken}`,
-        };
-
         setIsAuth(true);
       } else {
         setIsAuth(false);
