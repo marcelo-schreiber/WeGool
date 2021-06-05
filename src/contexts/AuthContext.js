@@ -1,5 +1,5 @@
-import React, { useState, createContext } from 'react';
-import api from '../services/api';
+import React, { useState, createContext } from "react";
+import api from "../services/api";
 
 const AuthContext = createContext({});
 
@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
       );
 
       if (res.data.accessToken) {
-        localStorage.setItem('token', `Bearer ${res.data.accessToken}`);
+        localStorage.setItem("token", `Bearer ${res.data.accessToken}`);
         setIsAuth(true);
       } else {
         setIsAuth(false);

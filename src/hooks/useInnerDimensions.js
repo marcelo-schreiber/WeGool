@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 
 const useInnerDimensions = () => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -11,11 +11,11 @@ const useInnerDimensions = () => {
   useEffect(() => {
     handleResize();
     // mounted
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       // unmounted
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

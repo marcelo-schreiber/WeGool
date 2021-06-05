@@ -12,7 +12,7 @@ export default createGlobalStyle`
   }
 
   ::selection {
-    background-color: ${(p) => p.theme.colors.primary};
+    background-color: ${(p) => p.theme.colors.primaryShade};
     color: #fff;
   }
 
