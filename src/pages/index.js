@@ -37,7 +37,9 @@ const Home = () => {
             href="https://github.com/marcelo-schreiber/"
             target="_blank"
           >
-            <u>código fonte</u>
+            <b>
+              <u>código fonte</u>
+            </b>
           </S.GithubLink>{" "}
           no GitHub.
         </S.SideText>
