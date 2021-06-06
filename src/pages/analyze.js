@@ -18,7 +18,13 @@ import {
 // utils
 import api from "../services/api";
 import isBrowser from "../utils/isBrowser";
-import convertDate from "../utils/convertDate";
+import {
+  calculateMean,
+  sumArray,
+  movingAverage,
+  sortByDate,
+  sortByGrade,
+} from "../utils/calculations";
 
 function Analyze() {
   // auth
@@ -33,16 +39,6 @@ function Analyze() {
   if (isBrowser() && !isAuth) {
     router.push("/login");
   }
-
-  const totalGrade = grades.reduce((total, curr) => {
-    return (total += curr.nota);
-  }, 0);
-
-  const sortedGrades =
-    !isLoading &&
-    grades.sort((a, b) => {
-      return new Date(convertDate(a.envio) - new Date(convertDate(b.envio)));
-    });
 
   // fetch all texts -> for each -> fetch grade and date
   useEffect(() => {
@@ -79,12 +75,21 @@ function Analyze() {
         // received all responses -> stop loading
         setIsLoading(false);
       });
-
     return () => {
       // stops bugs on dev
       setGrades([]);
     };
   }, []);
+
+  // calculations
+  const sortedGradesByDate = sortByDate(grades);
+  const sortedGradesByPerformance = sortByGrade(grades.slice()); // make copy so 'grade' state doesn't change
+
+  const mean = calculateMean(sumArray(grades), grades.length); // mean = total / size
+  const lastThreeDaysMean = movingAverage(sortedGradesByDate.slice(), 3);
+
+  const bestGrade = sortedGradesByPerformance[grades.length - 1]?.nota;
+  const worstGrade = sortedGradesByPerformance[0]?.nota;
 
   return (
     <>
@@ -93,11 +98,16 @@ function Analyze() {
         <meta name="description" content="Veja o gráfico de suas redações" />
       </Head>
       <main>
-        <h1>
-          Média total é: {!isLoading && (totalGrade / grades.length).toFixed(2)}
-        </h1>
+        {!isLoading && (
+          <ul>
+            <li>Média: {mean}</li>
+            <li>Média móvel (3 dias): {lastThreeDaysMean}</li>
+            <li>Melhor nota: {bestGrade}</li>
+            <li>Pior nota: {worstGrade}</li>
+          </ul>
+        )}
 
-        <LineChart data={sortedGrades} width={900} height={500}>
+        <LineChart data={sortedGradesByDate} width={900} height={500}>
           <Line type="monotone" dataKey="nota" strokeWidth={3} />
           <CartesianGrid strokeDasharray="3 3" />
           <YAxis type="number" domain={[0, 10]} />
