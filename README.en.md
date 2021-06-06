@@ -44,8 +44,7 @@
 
 ## About
 
--This project doesn't have many pretensions, the use can be faulty if the API of Curso Positivo disables CORS.
-
+- This project doesn't have many pretensions, the use can be faulty if the API of Curso Positivo disables CORS.
 - Design was also a big focus, you can see its development on [figma](https://www.figma.com/file/WivHEpvI8ViAkNWflt3ncv/Wegool).
 - Leaving it open-source gives more reliability when placing your school id and password on a third-party site.
 
