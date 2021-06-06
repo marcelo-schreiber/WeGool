@@ -25,9 +25,9 @@
   <summary>Content table</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About</a>
+      <a href="#about">About</a>
       <ul>
-        <li><a href="#built-with">Built with</a></li>
+        <li><a href="#tecnologies">Built with</a></li>
       </ul>
     </li>
     <li>
