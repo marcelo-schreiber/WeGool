@@ -44,7 +44,7 @@
 
 ## Sobre o projeto
 
-- Este projeto não tem muitas pretenções, a utilização pode ser falha caso a API do curso positivo desative CORS em sua API.
+- Este projeto não tem muitas pretenções, a utilização pode ser falha caso a API do curso positivo desative CORS.
 - Design também foi um grande foco, você pode ver o desenvolvimento dele no [figma](https://www.figma.com/file/WivHEpvI8ViAkNWflt3ncv/Wegool).
 - Deixar ele open-source dá mais confiabilidade na hora de colocar sua matricula e senha em um site de terceiros.
 
