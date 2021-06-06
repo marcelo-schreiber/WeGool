@@ -1,5 +1,5 @@
 // hooks
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import useAuth from "../hooks/useAuth";
 import useInnerDimensions from "../hooks/useInnerDimensions";
@@ -16,11 +16,8 @@ import * as S from "../styles/components/login";
 // utils
 import isBrowser from "../utils/isBrowser";
 
-// toasts
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 function Login() {
+  const firstInput = useRef(null);
   const router = useRouter();
   const { width } = useInnerDimensions();
   const { isAuth, Login } = useAuth();
@@ -29,26 +26,32 @@ function Login() {
   const [senha, setSenha] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  if (isBrowser && isAuth) {
+  if (isBrowser() && isAuth) {
     router.push("/analyze");
-    return null;
   }
 
   const reset = () => {
+    firstInput.current.focus();
     setSenha("");
     setMatricula("");
+    setIsLoading(false);
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
-    await Login(matricula, senha);
-    reset();
+    try {
+      await Login(matricula, senha);
+      reset();
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   return (
     <>
       <Head>
-        <title>WeGool | Home</title>
+        <title>WeGool | Login</title>
         <meta name="description" content="Faça login e veja seus dados" />
       </Head>
       <main>
@@ -67,6 +70,7 @@ function Login() {
             <form onSubmit={handleSubmit}>
               <S.Label htmlFor="matricula">Matricula</S.Label>
               <S.Input
+                ref={firstInput}
                 name="matricula"
                 id="matricula"
                 type="matricula"
