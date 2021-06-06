@@ -1,2 +1,5 @@
-const isBrowser = () => typeof window !== "undefined";
+function isBrowser() {
+  return typeof window !== "undefined";
+}
+
 export default isBrowser;

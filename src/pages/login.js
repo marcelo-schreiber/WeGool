@@ -17,14 +17,18 @@ import * as S from "../styles/components/login";
 import isBrowser from "../utils/isBrowser";
 
 function Login() {
-  const firstInput = useRef(null);
+  // auth
   const router = useRouter();
-  const { width } = useInnerDimensions();
   const { isAuth, Login } = useAuth();
 
+  // design
+  const { width } = useInnerDimensions();
+  const firstInput = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // inputs
   const [matricula, setMatricula] = useState("");
   const [senha, setSenha] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   if (isBrowser() && isAuth) {
     router.push("/analyze");
@@ -67,7 +71,7 @@ function Login() {
               Não se preocupe, nenhum dado seu será gravado.
             </S.Subtitle>
             <form onSubmit={handleSubmit}>
-              <S.Label htmlFor="matricula">Matricula</S.Label>
+              <S.Label htmlFor="matricula">Matrícula</S.Label>
               <S.Input
                 ref={firstInput}
                 name="matricula"
