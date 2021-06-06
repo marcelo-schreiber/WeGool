@@ -25,18 +25,18 @@
   <summary>Tabela de conteúdos</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Sobre o projeto</a>
+      <a href="#sobre-o-projeto">Sobre o projeto</a>
       <ul>
-        <li><a href="#built-with">Tecnologias</a></li>
+        <li><a href="#tecnologias">Tecnologias</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Começando</a>
+      <a href="#começando">Começando</a>
     </li>
-    <li><a href="#contributing">Contribuindo</a></li>
-    <li><a href="#license">Licença</a></li>
-    <li><a href="#new-features">Para fazer</a></li>
-    <li><a href="#contact">Contato</a></li>
+    <li><a href="#contribuindo">Contribuindo</a></li>
+    <li><a href="#licença">Licença</a></li>
+    <li><a href="#para-fazer">Para fazer</a></li>
+    <li><a href="#contato">Contato</a></li>
   </ol>
 </details>
 
@@ -69,7 +69,7 @@
 
 ### Para fazer
 
-- Ranking com os alunos (perigoso, pois precisa de banco de dados -> - confiabilidade).
+- Ranking com os alunos (perigoso, pois precisa de banco de dados, portanto, confiabilidade).
 - Melhorar design na página de gráficos.
 
 <!-- GETTING STARTED -->
