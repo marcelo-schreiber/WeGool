@@ -114,7 +114,7 @@ function Login() {
               <S.GlassBackground></S.GlassBackground>
               <S.RightSideContentContainer>
                 <Image
-                  src="/Login.png"
+                  src="/login.png"
                   width="470"
                   height="470"
                   alt="Guy logging in"
