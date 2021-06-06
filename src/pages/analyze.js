@@ -24,7 +24,7 @@ function Analyze() {
   // auth
   const router = useRouter();
   const { isAuth, Logout } = useAuth();
-  const bearerToken = localStorage.getItem("token") || router.push("/login");
+  const bearerToken = isBrowser() && localStorage.getItem("token");
 
   const [isLoading, setIsLoading] = useState(true);
   const [grades, setGrades] = useState([]);
