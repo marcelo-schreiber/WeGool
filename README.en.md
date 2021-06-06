@@ -58,7 +58,7 @@
 
 ### Tecnologies
 
-- Figma [layout](https://www.figma.com/file/WivHEpvI8ViAkNWflt3ncv/Wegool)
+- Figma [design](https://www.figma.com/file/WivHEpvI8ViAkNWflt3ncv/Wegool)
 - [NextJs](https://nextjs.org/)
 - [Styled Components](https://styled-components.com/)
 - [Recharts](https://recharts.org/en-US/)
