@@ -35,10 +35,6 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-          <meta
-            name="description"
-            content="Visualização de dados das suas redações"
-          />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@300;400;500;700&display=swap"
@@ -56,6 +52,7 @@ export default class MyDocument extends Document {
             property="og:description"
             content="Visualização de dados das suas redações"
           />
+          <meta name="theme-color" content="#6D41A1" />
           <meta property="og:site_name" content="WeGool" />
 
           <meta property="og:type" content="website" />
