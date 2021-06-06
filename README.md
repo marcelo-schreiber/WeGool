@@ -10,7 +10,7 @@
   </a>
 
   <p align="center">
-    Veja os dados de suas redações do curso positivo <a href="https://github.com/marcelo-schreiber/WeGool" target="_blank" rel="noreferrer"> usando a API deles.</a>.
+    Veja os dados de suas redações do curso positivo <a href="https://github.com/marcelo-schreiber/WeGool" target="_blank" rel="noreferrer"> usando a API deles</a>.
     <br />
     <br />
     <a href="#getting-started">Veja instruções</a>

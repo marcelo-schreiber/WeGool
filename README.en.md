@@ -10,7 +10,7 @@
   </a>
 
   <p align="center">
-    See your essays from Curso Positivo data <a href="https://github.com/marcelo-schreiber/WeGool" target="_blank" rel="noreferrer"> usiong their api.</a>.
+    See your essays from Curso Positivo data <a href="https://github.com/marcelo-schreiber/WeGool" target="_blank" rel="noreferrer"> usiong their API</a>.
     <br />
     <br />
     <a href="#getting-started">See instructions</a>
