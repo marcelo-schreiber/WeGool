@@ -80,6 +80,7 @@ function Login() {
                 placeholder="12345678"
                 minLength={6}
                 maxLength={150}
+                required
                 value={matricula}
                 onChange={(e) => setMatricula(e.target.value)}
               />
@@ -89,6 +90,7 @@ function Login() {
                 name="senha"
                 id="senha"
                 type="password"
+                required
                 minLength={6}
                 maxLength={150}
                 value={senha}
