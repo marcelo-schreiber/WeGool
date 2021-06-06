@@ -1,34 +1,106 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Issues](https://img.shields.io/badge/Issues-0-red.svg)](https://github.com/marcelo-schreiber/WeGool/issues)
 
-## Getting Started
+[README in english](README.en.md)
 
-First, run the development server:
+<br />
+<p align="center">
+  <a href="https://wegool.vercel.app/" target="_blank" rel="noreferrer">
+    <img src="https://github.com/marcelo-schreiber/WeGool/blob/master/public/logo.svg" alt="Logo">
+  </a>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+  <p align="center">
+    Veja os dados de suas redações do curso positivo <a href="https://github.com/marcelo-schreiber/WeGool" target="_blank" rel="noreferrer"> usando a API deles.</a>.
+    <br />
+    <br />
+    <a href="#getting-started">Veja instruções</a>
+    ·
+    <a href="https://github.com/marcelo-schreiber/WeGool/issues">Relate um erro</a>
+    ·
+    <a href="https://github.com/marcelo-schreiber/WeGool/issues">Solicitar recurso</a>
+  </p>
+</p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<details open="open">
+  <summary>Tabela de conteúdos</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">Sobre o projeto</a>
+      <ul>
+        <li><a href="#built-with">Tecnologias</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Começando</a>
+    </li>
+    <li><a href="#contributing">Contribuindo</a></li>
+    <li><a href="#license">Licença</a></li>
+    <li><a href="#new-features">Para fazer</a></li>
+    <li><a href="#contact">Contato</a></li>
+  </ol>
+</details>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+<!-- ABOUT THE PROJECT -->
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Sobre o projeto
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Este projeto não tem muitas pretenções, a utilização pode ser falha caso a API do curso positivo desative CORS em sua API.
+- Design também foi um grande foco, você pode ver o desenvolvimento dele no [figma](https://www.figma.com/file/WivHEpvI8ViAkNWflt3ncv/Wegool).
+- Deixar ele open-source dá mais confiabilidade na hora de colocar sua matricula e senha em um site de terceiros.
 
-## Learn More
+### Por que NextJs?
 
-To learn more about Next.js, take a look at the following resources:
+- Otimização de imagens.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Paginação mais simples.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Não utilizei SSR, não tenho acesso a API completa do positivo
 
-## Deploy on Vercel
+<!-- BUILT WITH -->
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Tecnologias
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Figma [layout](https://www.figma.com/file/WivHEpvI8ViAkNWflt3ncv/Wegool)
+- [NextJs](https://nextjs.org/)
+- [Styled Components](https://styled-components.com/)
+- [Recharts](https://recharts.org/en-US/)
+
+<!-- NEW FEATURES -->
+
+### Para fazer
+
+- Ranking com os alunos (perigoso, pois precisa de banco de dados -> - confiabilidade).
+- Melhorar design na página de gráficos.
+
+<!-- GETTING STARTED -->
+
+## Começando
+
+Para funcionar na sua máquina você deve instalar <a href="https://yarnpkg.com/" target="_blank" rel="noreferrer">Yarn</a> e <a href="https://nodejs.org" target="_blank" rel="noreferrer">NodeJs</a>.
+
+## Instalação
+
+Clone o projeto e execute `yarn && yarn dev` no diretório principal.
+
+- Seu computador deve estar hosteando um exemplo em <a href="http://localhost:3000">http://localhost:3000</a>
+
+## Contribuindo
+
+Contribuições são o que faz a comunidade open source ser incrível como ela é. Qualquer contribuição que você faz são muito bem-vindas.
+
+1. Fork o Projeto
+2. Crie uma branch (git checkout -b feature/featureIncrivel)
+3. Commit suas alterações (git commit -m 'Add: featureIncrivel')
+4. Push para a Branch (git push origin feature/featureIncrivel)
+5. Faça um Pull Request
+
+## Licença
+
+Distribuido sobre a Licença `MIT`. Veja LICENSE para mais informações.
+
+## Contato
+
+- Discord: Losaeg#1619
+- Email: marcelorissette15@gmail.com
+
+##### Feito com <3 por Marcelo Schreiber
