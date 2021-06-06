@@ -89,7 +89,7 @@ function Analyze() {
   return (
     <>
       <Head>
-        <title>WeGool | análise</title>
+        <title>WeGool | Análise</title>
         <meta name="description" content="Veja o gráfico de suas redações" />
       </Head>
       <main>

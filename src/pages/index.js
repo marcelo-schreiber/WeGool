@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <S.GradientBg>
       <Head>
-        <title>WeGool | home</title>
+        <title>WeGool | Home</title>
       </Head>
       <Header />
       <S.ContentContainer>

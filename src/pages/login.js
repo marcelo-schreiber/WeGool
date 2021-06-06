@@ -56,7 +56,6 @@ function Login() {
       </Head>
       <main>
         {/* Left side */}
-        <ToastContainer />
         <S.Wrapper>
           <S.LeftSideWrapper>
             <S.LogoPlacer>
