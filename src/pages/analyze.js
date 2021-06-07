@@ -121,7 +121,7 @@ function Analyze() {
           )}
           <S.QuitButton onClick={Logout}>Sair</S.QuitButton>
         </S.CalculationsContainer>
-        <ResponsiveContainer width="96%" height={375}>
+        <ResponsiveContainer width="97%" height={375}>
           <LineChart data={sortedGradesByDate}>
             <Line
               type="monotone"
