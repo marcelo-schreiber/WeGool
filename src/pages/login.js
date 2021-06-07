@@ -9,8 +9,6 @@ import Head from "next/head";
 import ReactLoading from "react-loading";
 import Image from "next/image";
 import Logo from "../components/Logo";
-
-// styled
 import * as S from "../styles/components/login";
 
 // utils

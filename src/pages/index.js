@@ -26,6 +26,7 @@ const Home = () => {
     <S.GradientBg>
       <Head>
         <title>WeGool | Home</title>
+        <meta name="description" content="Home do wegool, faça o seu login" />
       </Head>
       <Header />
       <S.ContentContainer>
@@ -35,6 +36,7 @@ const Home = () => {
           ver o{" "}
           <S.GithubLink
             href="https://github.com/marcelo-schreiber/"
+            rel="noreferrer"
             target="_blank"
           >
             <b>
