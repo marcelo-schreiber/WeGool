@@ -26,13 +26,6 @@ export default createGlobalStyle`
     font-size: 62.5%;
   }
 
-  .Toastify__toast-body {
-    // reset css in toastify
-    font-size: 1.4rem;
-    color: #fff;
-  }
-
-
   @media only screen and (max-width: 1600px) {
     :root {
       font-size: 40.6%;
