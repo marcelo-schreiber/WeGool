@@ -68,7 +68,6 @@
 ### New features
 
 - Ranking com os alunos (perigoso, pois precisa de banco de dados -> - confiabilidade).
-- Melhorar design na página de gráficos.
 
 <!-- GETTING STARTED -->
 

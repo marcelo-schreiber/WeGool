@@ -70,7 +70,6 @@
 ### Para fazer
 
 - Ranking com os alunos (perigoso, pois precisa de banco de dados, portanto, confiabilidade).
-- Melhorar design na página de gráficos.
 
 <!-- GETTING STARTED -->
 
