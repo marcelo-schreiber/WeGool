@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const GradientBg = styled.div`
   background: radial-gradient(
-      50% 65.18% at 50% 50%,
-      ${(p) => p.theme.colors.background} 47.73%,
+      62.47% 81.44% at 50% 61.38%,
+      #ffffff 36.79%,
       rgba(255, 255, 255, 0) 100%
     ),
     #eaeaea;
-
+  mix-blend-mode: normal;
   min-height: 100vh;
 
   .recharts-wrapper {
