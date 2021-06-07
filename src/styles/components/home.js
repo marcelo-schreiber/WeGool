@@ -52,11 +52,17 @@ export const MainSlogan = styled.h2`
 export const SideText = styled.p`
   font-size: 2.8rem;
   line-height: 115%;
-
   margin-top: 3.6rem;
-  line-height: 115%;
 
   color: ${(p) => p.theme.colors.lightText};
+
+  max-width: 95%;
+
+  @media only screen and (max-width: 850px) {
+    br {
+      display: none;
+    }
+  }
 `;
 
 export const BtnsContainer = styled.div`

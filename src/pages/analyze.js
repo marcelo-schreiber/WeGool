@@ -5,6 +5,7 @@ import useAuth from "../hooks/useAuth";
 
 // components
 import Head from "next/head";
+import Header from "../components/Header";
 import {
   LineChart,
   Line,
@@ -13,7 +14,9 @@ import {
   YAxis,
   XAxis,
   ReferenceLine,
+  ResponsiveContainer,
 } from "recharts";
+import * as S from "../styles/components/analyze";
 
 // utils
 import api from "../services/api";
@@ -92,32 +95,54 @@ function Analyze() {
   const worstGrade = sortedGradesByPerformance[0]?.nota;
 
   return (
-    <>
+    <S.GradientBg>
       <Head>
         <title>WeGool | Análise</title>
         <meta name="description" content="Veja o gráfico de suas redações" />
       </Head>
+      <Header />
       <main>
-        {!isLoading && (
-          <ul>
-            <li>Média: {mean}</li>
-            <li>Média móvel (3 dias): {lastThreeDaysMean}</li>
-            <li>Melhor nota: {bestGrade}</li>
-            <li>Pior nota: {worstGrade}</li>
-          </ul>
-        )}
-
-        <LineChart data={sortedGradesByDate} width={900} height={500}>
-          <Line type="monotone" dataKey="nota" strokeWidth={3} />
-          <CartesianGrid strokeDasharray="3 3" />
-          <YAxis type="number" domain={[0, 10]} />
-          <XAxis dataKey="envio" />
-          <ReferenceLine y={7} label="Média" stroke="red" />
-          <Tooltip />
-        </LineChart>
-        <button onClick={Logout}>Sair</button>
+        <S.CalculationsContainer>
+          {!isLoading && (
+            <S.List>
+              <li>
+                Média: <S.Value>{mean}</S.Value>
+              </li>
+              <li>
+                Média móvel (3 dias): <S.Value>{lastThreeDaysMean}</S.Value>
+              </li>
+              <li>
+                Melhor nota: <S.Value>{bestGrade}</S.Value>
+              </li>
+              <li>
+                Pior nota: <S.Value>{worstGrade}</S.Value>
+              </li>
+            </S.List>
+          )}
+          <S.QuitButton onClick={Logout}>Sair</S.QuitButton>
+        </S.CalculationsContainer>
+        <ResponsiveContainer width="96%" height={375}>
+          <LineChart data={sortedGradesByDate}>
+            <Line
+              type="monotone"
+              dataKey="nota"
+              strokeWidth={4}
+              stroke="#6D41A1"
+            />
+            <CartesianGrid strokeDasharray="3 3" />
+            <YAxis type="number" domain={[0, 10]} />
+            <XAxis dataKey="envio" />
+            <ReferenceLine
+              y={7}
+              label="Média"
+              stroke="red"
+              strokeDasharray="3 3"
+            />
+            <Tooltip />
+          </LineChart>
+        </ResponsiveContainer>
       </main>
-    </>
+    </S.GradientBg>
   );
 }
 
