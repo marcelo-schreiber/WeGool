@@ -51,10 +51,10 @@ export default class MyDocument extends Document {
             sizes="180x180"
             href="/apple-touch-icon.png"
           />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3D71BF" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#6d41a1" />
 
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-          <meta name="msapplication-TileColor" content="#3D71BF" />
+          <meta name="msapplication-TileColor" content="#603cba" />
           <meta property="og:title" content="WeGool" />
           <meta
             property="og:description"
@@ -62,9 +62,13 @@ export default class MyDocument extends Document {
           />
           <meta name="theme-color" content="#6D41A1" />
           <meta property="og:site_name" content="WeGool" />
+          <meta name="application-name" content="WeGool" />
 
           <meta property="og:type" content="website" />
           <meta property="og:locale" content="pt-br" />
+
+          <link rel="manifest" href="/site.webmanifest" />
+          <meta name="apple-mobile-web-app-title" content="WeGool" />
         </Head>
         <body>
           <Main />

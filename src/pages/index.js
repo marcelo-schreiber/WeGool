@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <S.GradientBg>
       <Head>
-        <title>WeGool | Home</title>
+        <title>WeGool</title>
         <meta name="description" content="Home do wegool, faça o seu login" />
       </Head>
       <Header />
