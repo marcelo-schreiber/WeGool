@@ -8,6 +8,8 @@ import Head from "next/head";
 import Header from "../components/Header";
 import {
   LineChart,
+  AreaChart,
+  Area,
   Line,
   CartesianGrid,
   Tooltip,
@@ -15,6 +17,7 @@ import {
   XAxis,
   ReferenceLine,
   ResponsiveContainer,
+  Legend,
 } from "recharts";
 import * as S from "../styles/components/analyze";
 
@@ -23,7 +26,7 @@ import api from "../services/api";
 import isBrowser from "../utils/isBrowser";
 import {
   calculateMean,
-  sumArray,
+  sumGrades,
   movingAverage,
   sortByDate,
   sortByGrade,
@@ -65,12 +68,33 @@ function Analyze() {
               if (data.status !== "Corrigida") {
                 return;
               }
+
+              const comp = data.macroCompetencias;
+              // access last one and get the maximum grade then check if it's 0
+              const isLastItemNull =
+                comp[comp.length - 1]?.subCompetencias[
+                  comp[comp.length - 1].subCompetencias.length - 1
+                ]?.pontosNota === 0;
+
+              const accessPortugueseItem = isLastItemNull ? 2 : 1;
+
               setGrades((oldState) => [
                 ...oldState,
                 {
                   // round the grade and remove time from the date
                   nota: Math.round(data.nota * 100) / 100,
                   envio: data.dataUpload.substring(0, 10),
+                  nota_gramática: {
+                    // access grade from last item
+                    nota: comp[comp.length - accessPortugueseItem]
+                      ?.subCompetenciaSelecionada?.pontosNota,
+                    // acess max grade from last item
+                    máxima:
+                      comp[comp.length - accessPortugueseItem]?.subCompetencias[
+                        comp[comp.length - accessPortugueseItem].subCompetencias
+                          .length - 1
+                      ]?.pontosNota,
+                  },
                 },
               ]);
             })
@@ -87,8 +111,11 @@ function Analyze() {
   // calculations
   const sortedGradesByDate = sortByDate(grades);
   const sortedGradesByPerformance = sortByGrade(grades.slice()); // make copy so 'grade' state doesn't change
+  const onlyPortugueseGrades = grades.map(
+    ({ nota_gramática }) => nota_gramática
+  );
 
-  const mean = calculateMean(sumArray(grades), grades.length); // mean = total / size
+  const mean = calculateMean(sumGrades(grades), grades.length); // mean = total / size
   const lastThreeDaysMean = movingAverage(sortedGradesByDate.slice(), 3);
 
   const bestGrade = sortedGradesByPerformance[grades.length - 1]?.nota;
@@ -121,12 +148,14 @@ function Analyze() {
           )}
           <S.QuitButton onClick={Logout}>Sair</S.QuitButton>
         </S.CalculationsContainer>
+        <S.ChartTitle>Notas</S.ChartTitle>
         <ResponsiveContainer width="97%" height={375}>
           <LineChart data={sortedGradesByDate}>
             <Line
               type="monotone"
               dataKey="nota"
-              strokeWidth={4}
+              name="Nota"
+              strokeWidth={3}
               stroke="#6D41A1"
             />
             <CartesianGrid strokeDasharray="3 3" />
@@ -135,11 +164,40 @@ function Analyze() {
             <ReferenceLine
               y={7}
               label="Média"
-              stroke="red"
+              strokeWidth={3}
+              stroke="#BF0404"
               strokeDasharray="3 3"
             />
-            <Tooltip />
+            <Tooltip labelFormatter={() => "Notas"} />
+            <Legend />
           </LineChart>
+        </ResponsiveContainer>
+        <S.ChartTitle>Competência: gramática</S.ChartTitle>
+        <ResponsiveContainer width="97%" height={375}>
+          <AreaChart data={onlyPortugueseGrades}>
+            <Area
+              type="monotone"
+              name="Nota atingida"
+              dataKey="nota"
+              strokeWidth={3}
+              stroke="#3D71BF"
+              fill="#3D71BF"
+            />
+            <Area
+              type="monotone"
+              dataKey="máxima"
+              name="Máxima"
+              strokeWidth={3}
+              stroke="#6D41A1"
+              fill="#6D41A1"
+              strokeDasharray="3 3"
+            />
+            <Legend />
+            <CartesianGrid strokeDasharray="3 3" />
+            <YAxis type="number" />
+            <XAxis dataKey="envio" />
+            <Tooltip labelFormatter={() => "Gramática"} />
+          </AreaChart>
         </ResponsiveContainer>
       </main>
     </S.GradientBg>

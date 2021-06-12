@@ -16,7 +16,7 @@ export function sortByDate(dateArray) {
   });
 }
 
-export function sumArray(numArray) {
+export function sumGrades(numArray) {
   return numArray.reduce((total, curr) => (total += curr.nota), 0);
 }
 

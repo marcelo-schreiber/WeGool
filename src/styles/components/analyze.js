@@ -15,6 +15,14 @@ export const GradientBg = styled.div`
   }
 `;
 
+export const ChartTitle = styled.h2`
+  text-align: center;
+  margin: 4rem 0;
+  font-size: 2.6rem;
+
+  color: ${(p) => p.theme.colors.darkText};
+`;
+
 export const List = styled.ul`
   font-size: 2.6rem;
   line-height: 131.5%;
