@@ -168,7 +168,7 @@ function Analyze() {
               stroke="#BF0404"
               strokeDasharray="3 3"
             />
-            <Tooltip labelFormatter={() => "Notas"} />
+            <Tooltip wrapperStyle={{ fontSize: "11px" }} />
             <Legend />
           </LineChart>
         </ResponsiveContainer>
@@ -196,7 +196,10 @@ function Analyze() {
             <CartesianGrid strokeDasharray="3 3" />
             <YAxis type="number" />
             <XAxis dataKey="envio" />
-            <Tooltip labelFormatter={() => "Gramática"} />
+            <Tooltip
+              labelFormatter={() => "Gramática"}
+              wrapperStyle={{ fontSize: "12px" }}
+            />
           </AreaChart>
         </ResponsiveContainer>
       </main>
