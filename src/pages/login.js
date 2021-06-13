@@ -28,9 +28,7 @@ function Login() {
   const [matricula, setMatricula] = useState("");
   const [senha, setSenha] = useState("");
 
-  if (isBrowser() && isAuth) {
-    router.push("/analyze");
-  }
+  if (isBrowser() && isAuth) router.push("/analyze");
 
   const reset = () => {
     firstInput.current.focus();
@@ -88,6 +86,7 @@ function Login() {
                 name="senha"
                 id="senha"
                 type="password"
+                placeholder="01012021"
                 required
                 minLength={6}
                 maxLength={150}
@@ -115,7 +114,7 @@ function Login() {
           {/* Right side (only on big screens) */}
           {width >= 825 && (
             <S.RightContent>
-              <S.GlassBackground></S.GlassBackground>
+              <S.GlassBackground />
               <S.RightSideContentContainer>
                 <Image
                   src="/login.png"
