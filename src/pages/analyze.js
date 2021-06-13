@@ -1,122 +1,37 @@
 // hooks
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import useAuth from "../hooks/useAuth";
+import useApiData from "../hooks/useApiData";
 
 // components
 import Head from "next/head";
 import Header from "../components/Header";
-import {
-  LineChart,
-  AreaChart,
-  Area,
-  Line,
-  CartesianGrid,
-  Tooltip,
-  YAxis,
-  XAxis,
-  ReferenceLine,
-  ResponsiveContainer,
-  Legend,
-} from "recharts";
+import * as Chart from "recharts";
 import * as S from "../styles/components/analyze";
 
 // utils
-import api from "../services/api";
 import isBrowser from "../utils/isBrowser";
-import {
-  calculateMean,
-  sumGrades,
-  movingAverage,
-  sortByDate,
-  sortByGrade,
-} from "../utils/calculations";
+import * as Calc from "../utils/calculations";
 
 function Analyze() {
   // auth
   const router = useRouter();
   const { isAuth, Logout } = useAuth();
-  const bearerToken = isBrowser() && localStorage.getItem("token");
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [grades, setGrades] = useState([]);
+  const [grades, isLoading] = useApiData();
 
   // redirect
-  if (isBrowser() && !isAuth) {
-    router.push("/login");
-  }
+  if (isBrowser() && !isAuth) router.push("/login");
 
-  // fetch all texts -> for each -> fetch grade and date
-  useEffect(() => {
-    api
-      .get("Aluno/Redacoes", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: bearerToken,
-        },
-      })
-      .then(({ data }) => {
-        data.map((text) =>
-          api
-            .get(`Redacao/DadosRedacao?idRedacao=${text.id}`, {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: bearerToken,
-              },
-            })
-            .then(({ data }) => {
-              if (data.status !== "Corrigida") {
-                return;
-              }
-
-              const comp = data.macroCompetencias;
-              // access last one and get the maximum grade then check if it's 0
-              const isLastItemNull =
-                comp[comp.length - 1]?.subCompetencias[
-                  comp[comp.length - 1].subCompetencias.length - 1
-                ]?.pontosNota === 0;
-
-              const accessPortugueseItem = isLastItemNull ? 2 : 1;
-
-              setGrades((oldState) => [
-                ...oldState,
-                {
-                  // round the grade and remove time from the date
-                  nota: Math.round(data.nota * 100) / 100,
-                  envio: data.dataUpload.substring(0, 10),
-                  nota_gramática: {
-                    // access grade from last item
-                    nota: comp[comp.length - accessPortugueseItem]
-                      ?.subCompetenciaSelecionada?.pontosNota,
-                    // acess max grade from last item
-                    máxima:
-                      comp[comp.length - accessPortugueseItem]?.subCompetencias[
-                        comp[comp.length - accessPortugueseItem].subCompetencias
-                          .length - 1
-                      ]?.pontosNota,
-                  },
-                },
-              ]);
-            })
-        );
-        // received all responses -> stop loading
-        setIsLoading(false);
-      });
-    return () => {
-      // stops bugs on dev
-      setGrades([]);
-    };
-  }, []);
+  if (isLoading) return null;
 
   // calculations
-  const sortedGradesByDate = sortByDate(grades);
-  const sortedGradesByPerformance = sortByGrade(grades.slice()); // make copy so 'grade' state doesn't change
-  const onlyPortugueseGrades = grades.map(
-    ({ nota_gramática }) => nota_gramática
-  );
+  const sortedGradesByDate = Calc.sortByDate(grades);
+  const sortedGradesByPerformance = Calc.sortByGrade(grades.slice()); // make copy so 'grade' state doesn't change
+  const grammarGrades = grades.map((i) => i.nota_gramática);
 
-  const mean = calculateMean(sumGrades(grades), grades.length); // mean = total / size
-  const lastThreeDaysMean = movingAverage(sortedGradesByDate.slice(), 3);
+  const mean = Calc.calculateMean(Calc.sumGrades(grades), grades.length); // mean = total / size
+  const lastThreeDaysMean = Calc.movingAverage(sortedGradesByDate.slice(), 3);
 
   const bestGrade = sortedGradesByPerformance[grades.length - 1]?.nota;
   const worstGrade = sortedGradesByPerformance[0]?.nota;
@@ -149,33 +64,33 @@ function Analyze() {
           <S.QuitButton onClick={Logout}>Sair</S.QuitButton>
         </S.CalculationsContainer>
         <S.ChartTitle>Notas</S.ChartTitle>
-        <ResponsiveContainer width="97%" height={375}>
-          <LineChart data={sortedGradesByDate}>
-            <Line
+        <Chart.ResponsiveContainer width="97%" height={375}>
+          <Chart.LineChart data={sortedGradesByDate}>
+            <Chart.Line
               type="monotone"
               dataKey="nota"
               name="Nota"
               strokeWidth={3}
               stroke="#6D41A1"
             />
-            <CartesianGrid strokeDasharray="3 3" />
-            <YAxis type="number" domain={[0, 10]} />
-            <XAxis dataKey="envio" />
-            <ReferenceLine
+            <Chart.CartesianGrid strokeDasharray="3 3" />
+            <Chart.YAxis type="number" domain={[0, 10]} />
+            <Chart.XAxis dataKey="envio" />
+            <Chart.ReferenceLine
               y={7}
               label="Média"
               strokeWidth={3}
               stroke="#BF0404"
               strokeDasharray="3 3"
             />
-            <Tooltip wrapperStyle={{ fontSize: "11px" }} />
-            <Legend />
-          </LineChart>
-        </ResponsiveContainer>
+            <Chart.Tooltip wrapperStyle={{ fontSize: "11px" }} />
+            <Chart.Legend />
+          </Chart.LineChart>
+        </Chart.ResponsiveContainer>
         <S.ChartTitle>Competência: gramática</S.ChartTitle>
-        <ResponsiveContainer width="97%" height={375}>
-          <AreaChart data={onlyPortugueseGrades}>
-            <Area
+        <Chart.ResponsiveContainer width="97%" height={375}>
+          <Chart.AreaChart data={grammarGrades}>
+            <Chart.Area
               type="monotone"
               name="Nota atingida"
               dataKey="nota"
@@ -183,7 +98,7 @@ function Analyze() {
               stroke="#3D71BF"
               fill="#3D71BF"
             />
-            <Area
+            <Chart.Area
               type="monotone"
               dataKey="máxima"
               name="Máxima"
@@ -192,16 +107,16 @@ function Analyze() {
               fill="#6D41A1"
               strokeDasharray="3 3"
             />
-            <Legend />
-            <CartesianGrid strokeDasharray="3 3" />
-            <YAxis type="number" />
-            <XAxis dataKey="envio" />
-            <Tooltip
+            <Chart.Legend />
+            <Chart.CartesianGrid strokeDasharray="3 3" />
+            <Chart.YAxis type="number" />
+            <Chart.XAxis dataKey="envio" />
+            <Chart.Tooltip
               labelFormatter={() => "Gramática"}
               wrapperStyle={{ fontSize: "12px" }}
             />
-          </AreaChart>
-        </ResponsiveContainer>
+          </Chart.AreaChart>
+        </Chart.ResponsiveContainer>
       </main>
     </S.GradientBg>
   );
