@@ -63,7 +63,7 @@ function useApiData() {
     setIsLoading(false);
 
     return () => {
-      // stops bugs on dev
+      // prevents bugs on dev
       setGrades([]);
     };
   }, []);
