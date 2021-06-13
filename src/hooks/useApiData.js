@@ -26,9 +26,7 @@ function useApiData() {
               },
             })
             .then(({ data }) => {
-              if (data.status !== "Corrigida") {
-                return;
-              }
+              if (data.status !== "Corrigida") return;
 
               const skills = data.macroCompetencias;
               // access last one and get the maximum grade then check if it's 0
