@@ -1,6 +1,6 @@
 import convertDate from "./convertDate";
 
-export function calculateMean(sum, size) {
+export function mean(sum, size) {
   // get's last 2 decimal places (toFixed) and removes 0 at the right (parseFloat)
   // stackoverflow: remove-insignificant-trailing-zeros-from-a-number
   return parseFloat((sum / size).toFixed(2));
@@ -14,6 +14,19 @@ export function sortByDate(dateArray) {
   return dateArray.sort((a, b) => {
     return new Date(convertDate(a.envio) - new Date(convertDate(b.envio)));
   });
+}
+
+export function varianceAndDeviation(gradesArray, mean) {
+  const size = gradesArray.length;
+  const upperSideOfVariance = gradesArray.reduce(
+    (total, curr) => (total += (mean - curr.nota) ** 2),
+    0
+  );
+
+  const variance = (upperSideOfVariance.toFixed(2) / size).toFixed(2);
+  const deviation = Math.sqrt(variance).toFixed(2);
+
+  return { variance, deviation };
 }
 
 export function sumGrades(numArray) {

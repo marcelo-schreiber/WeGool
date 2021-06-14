@@ -1,5 +1,6 @@
-// hooks
 import React from "react";
+
+// hooks
 import { useRouter } from "next/router";
 import useAuth from "../hooks/useAuth";
 import useApiData from "../hooks/useApiData";
@@ -30,11 +31,14 @@ function Analyze() {
   const sortedGradesByPerformance = Calc.sortByGrade(grades.slice()); // make copy so 'grade' state doesn't change
   const grammarGrades = grades.map((i) => i.nota_gramática);
 
-  const mean = Calc.calculateMean(Calc.sumGrades(grades), grades.length); // mean = total / size
+  const mean = Calc.mean(Calc.sumGrades(grades), grades.length);
   const lastThreeDaysMean = Calc.movingAverage(sortedGradesByDate.slice(), 3);
+  const { variance, deviation } = Calc.varianceAndDeviation(grades, mean);
 
   const bestGrade = sortedGradesByPerformance[grades.length - 1]?.nota;
   const worstGrade = sortedGradesByPerformance[0]?.nota;
+
+  console.log(variance);
 
   return (
     <S.GradientBg>
@@ -58,6 +62,9 @@ function Analyze() {
               </li>
               <li>
                 Pior nota: <S.Value>{worstGrade}</S.Value>
+              </li>
+              <li>
+                Desvio padrão: <S.Value>{deviation}</S.Value>
               </li>
             </S.List>
           )}
