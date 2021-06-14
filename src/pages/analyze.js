@@ -38,8 +38,6 @@ function Analyze() {
   const bestGrade = sortedGradesByPerformance[grades.length - 1]?.nota;
   const worstGrade = sortedGradesByPerformance[0]?.nota;
 
-  console.log(variance);
-
   return (
     <S.GradientBg>
       <Head>
