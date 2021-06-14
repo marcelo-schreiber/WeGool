@@ -34,7 +34,9 @@ export function sumGrades(numArray) {
 }
 
 export function movingAverage(sortedNumArray, howManyItems) {
+  // calculates the mean of the last (howManyitems) grades
   if (sortedNumArray.length === 0) return;
+
   const lastItemIdx = sortedNumArray.length - 1;
   let sum = 0;
 
