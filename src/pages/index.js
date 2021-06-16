@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 // utils
 import isBrowser from "../utils/isBrowser";
 
-const Home = () => {
+function Home() {
   // auth
   const router = useRouter();
   const { isAuth } = useAuth();
@@ -49,6 +49,6 @@ const Home = () => {
       </S.ContentContainer>
     </S.GradientBg>
   );
-};
+}
 
 export default Home;
