@@ -32,16 +32,14 @@ const Home = () => {
       <S.ContentContainer>
         <S.MainSlogan>Visualização de dados das suas redações</S.MainSlogan>
         <S.SideText>
-          Sua matricula e senha não sairam de seu computador, <br /> você pode
+          Sua matricula e senha não sairão de seu computador, <br /> você pode
           ver o{" "}
           <S.GithubLink
-            href="https://github.com/marcelo-schreiber/"
+            href="https://github.com/marcelo-schreiber/WeGool"
             rel="noreferrer"
             target="_blank"
           >
-            <b>
-              <u>código fonte</u>
-            </b>
+            código fonte
           </S.GithubLink>{" "}
           no GitHub.
         </S.SideText>

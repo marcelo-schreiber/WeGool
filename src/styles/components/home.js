@@ -11,13 +11,15 @@ export const GradientBg = styled.div`
   min-height: 100vh;
 `;
 export const GithubLink = styled.a`
-  font-weight: 500;
-
-  text-decoration: none;
+  font-weight: bold;
+  text-decoration: underline;
 
   :hover {
     color: ${(p) => p.theme.colors.primaryShade};
   }
+
+  transition: color 0.2s ease-in;
+
   color: ${(p) => p.theme.colors.primary};
 `;
 export const ContentContainer = styled.main`
