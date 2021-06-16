@@ -18,9 +18,7 @@ const Home = () => {
   const router = useRouter();
   const { isAuth } = useAuth();
 
-  if (isBrowser() && isAuth) {
-    router.push("/analyze");
-  }
+  if (isBrowser() && isAuth) router.push("/analyze");
 
   return (
     <S.GradientBg>
