@@ -6,7 +6,7 @@
 <br />
 <p align="center">
   <a href="https://wegool.vercel.app/" target="_blank" rel="noreferrer">
-    <img src="https://cdn.discordapp.com/attachments/685226653764550671/856571059700498482/shwocase.gif" alt="usage">
+    <img src="showcase" alt="usage">
   </a>
 
   <p align="center">
