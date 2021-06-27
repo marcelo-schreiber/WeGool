@@ -19,7 +19,7 @@ function Analyze() {
   // auth
   const router = useRouter();
   const { isAuth, Logout } = useAuth();
-  const [grades, isLoading] = useApiData();
+  const { grades, isLoading } = useApiData();
 
   // redirect
   if (isBrowser() && !isAuth) router.push("/login");
@@ -33,7 +33,7 @@ function Analyze() {
 
   const mean = Calc.mean(Calc.sumGrades(grades), grades.length);
   const lastThreeDaysMean = Calc.movingAverage(sortedGradesByDate.slice(), 3);
-  const { variance, deviation } = Calc.varianceAndDeviation(grades, mean);
+  const { deviation } = Calc.varianceAndDeviation(grades, mean);
 
   const bestGrade = sortedGradesByPerformance[grades.length - 1]?.nota;
   const worstGrade = sortedGradesByPerformance[0]?.nota;
