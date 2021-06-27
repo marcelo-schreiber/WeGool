@@ -75,7 +75,7 @@ function useApiData() {
     fetchData();
   }, []);
 
-  return { grades, error, isLoading };
+  return { grades, isLoading };
 }
 
 export default useApiData;
