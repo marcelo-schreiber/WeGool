@@ -13,7 +13,7 @@ export default createGlobalStyle`
 
   ::selection {
     background-color: ${(p) => p.theme.colors.primaryShade};
-    color: #fff;
+    color: ${(p) => p.theme.colors.background};
   }
 
   body {

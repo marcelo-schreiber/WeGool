@@ -28,11 +28,11 @@ export const List = styled.ul`
   line-height: 131.5%;
   list-style: none;
 
-  color: #7c8083;
+  color: ${(p) => p.theme.colors.lightText};
 `;
 
 export const Value = styled.b`
-  color: #6d41a1;
+  color: ${(p) => p.theme.colors.primary};
 `;
 
 export const CalculationsContainer = styled.div`
@@ -59,7 +59,7 @@ export const QuitButton = styled.button`
 
   border: none;
 
-  color: #ffffff;
+  color: ${(p) => p.theme.colors.background};
 
   cursor: pointer;
 
