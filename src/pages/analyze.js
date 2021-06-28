@@ -88,7 +88,7 @@ function Analyze() {
               stroke="#BF0404"
               strokeDasharray="3 3"
             />
-            <Chart.Tooltip wrapperStyle={{ fontSize: "11px" }} />
+            <Chart.Tooltip wrapperStyle={{ fontSize: "12px" }} />
             <Chart.Legend />
           </Chart.LineChart>
         </Chart.ResponsiveContainer>
