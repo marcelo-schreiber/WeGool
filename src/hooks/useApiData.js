@@ -7,39 +7,37 @@ function useApiData() {
   const bearerToken = isBrowser() && localStorage.getItem("token");
   const [grades, setGrades] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const header = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: bearerToken,
+    },
+  };
 
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const { data } = await api.get("Aluno/Redacoes", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: bearerToken,
-        },
-      });
+      const { data } = await api.get("Aluno/Redacoes", header);
 
       data.map(async (text) => {
         try {
           const { data } = await api.get(
             `Redacao/DadosRedacao?idRedacao=${text.id}`,
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: bearerToken,
-              },
-            }
+            header
           );
 
           if (data.status !== "Corrigida") return;
 
           const skills = data.macroCompetencias;
-          // access last one and get the maximum grade then check if it's 0
-          const isLastItemNull =
-            skills[skills.length - 1]?.subCompetencias[
-              skills[skills.length - 1].subCompetencias.length - 1
-            ]?.pontosNota === 0;
+          const lastSkill = skills[skills.length - 1]; // can be invalid (== 0)
 
-          const grammarItemIndex = isLastItemNull ? 2 : 1;
+          // access last one and get the maximum grade then check if it's 0 (invalid)
+          const isLastItemNull =
+            lastSkill.subCompetencias[lastSkill.subCompetencias.length - 1]
+              ?.pontosNota === 0;
+
+          const grammarItemIndex = skills.length - (isLastItemNull ? 2 : 1);
+          const grammarItem = skills[grammarItemIndex];
 
           setGrades((oldState) => [
             ...oldState,
@@ -48,14 +46,12 @@ function useApiData() {
               nota: Math.round(data.nota * 100) / 100,
               envio: data.dataUpload.substring(0, 10),
               nota_gramática: {
-                // access grade from last item
-                nota: skills[skills.length - grammarItemIndex]
-                  ?.subCompetenciaSelecionada?.pontosNota,
-                // acess max grade from last item
+                // access grade from last item (grammar)
+                nota: grammarItem?.subCompetenciaSelecionada?.pontosNota,
+                // acess max grade
                 máxima:
-                  skills[skills.length - grammarItemIndex]?.subCompetencias[
-                    skills[skills.length - grammarItemIndex].subCompetencias
-                      .length - 1
+                  grammarItem?.subCompetencias[
+                    grammarItem.subCompetencias.length - 1
                   ]?.pontosNota,
               },
             },
